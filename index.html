@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTT Website</title>
+
+  <!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <!-- REMIX ICON -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<!-- <div id="preloader">
+  <video id="loaderVideo" autoplay muted loop playsinline>
+    <source src="./images/preloader.mp4" type="video/mp4">
+  </video>
+</div> -->
+
+
+<!-- MODAL -->
+<div id="loginModal" class="login-modal">
+
+  <div class="login-box">
+
+    <span class="close-btn" onclick="closeLogin()">&times;</span>
+
+    <div class="bio-logo">
+      <i class="ri-movie-2-line"></i>
+    </div>
+
+    <h2 id="formTitle">Welcome Back</h2>
+
+    <p id="formSubtitle">
+      Login to continue watching your favorite movies & shows
+    </p>
+
+    <form id="authForm" onsubmit="handleAuthSubmit(event)">
+
+      <!-- ROLE -->
+      <div id="loginRoleBox">
+        <label>Login As</label>
+        <select id="loginRole">
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+        <p class="role-note">Choose Admin or User</p>
+      </div>
+
+      <!-- NAME -->
+      <input type="text" id="fullName" placeholder="Full Name" style="display:none;">
+
+      <!-- PHONE -->
+      <input type="tel" id="phoneNumber" placeholder="Phone Number">
+
+      <!-- EMAIL -->
+      <input type="email" id="email" placeholder="Email Address" required>
+
+      <!-- PASSWORD -->
+      <div class="password-field">
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <i class="ri-eye-off-line toggle-eye" id="eyeIcon" onclick="togglePassword()"></i>
+      </div>
+
+      <!-- CONFIRM -->
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" style="display:none;">
+
+      <button type="submit" class="login-submit" id="submitBtn">
+        Login to Dashboard
+      </button>
+
+    </form>
+
+    <p class="switch-text">
+      <span id="switchText">Don't have an account?</span>
+      <a href="#" onclick="toggleAuth()">Sign up</a>
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- NAVBAR -->
+<header>
+  <nav class="navbar">
+
+    <div class="nav__header">
+      <div class="nav__logo">
+        <a href="index.html">
+          <img src="./images/stackly_logo.webp" class="logo-img" alt="logo">
+        </a>
+      </div>
+
+      <div class="nav__menu__btn" id="menu-btn">
+        <i class="ri-menu-line"></i>
+      </div>
+    </div>
+
+    <ul class="nav__links" id="nav-links">
+      <li class="dropdown">
+        <a href="index.html">Home</a>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="service.html">Service</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="contact.html">Contact</a></li>
+<li>
+  <a href="javascript:void(0)" onclick="openLogin()">Login</a>
+</li>
+    </ul>
+
+  </nav>
+</header>
+
+
+
+
+
+<section class="hero">
+
+  <!-- MAIN BACKGROUND VIDEO -->
+  <video id="bgVideo" autoplay muted loop class="bg-video">
+    <source src="images/sita_video.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+
+<!-- LEFT -->
+<div class="hero-left">
+  <h1 id="title">Sita Ramam</h1>
+
+  <p id="desc">
+    A timeless love story that blossoms through heartfelt letters and
+    unforgettable moments. In a world full of chaos, their pure and
+    eternal bond proves that true love knows no boundaries, distance,
+    or time.
+  </p>
+
+  <button class="watch-btn" onclick="goTo404()">▶ Watch Now</button>
+</div>
+
+<!-- RIGHT SIDE IMAGES -->
+<div class="hero-right">
+
+  <img src="images/zootopia_image.webp" class="thumb active" onclick="changeVideo(0)">
+  <img src="images/conjuring_image.webp" class="thumb" onclick="changeVideo(1)">
+  <img src="images/demon_image.webp" class="thumb" onclick="changeVideo(2)">
+  <img src="images/jocker_image.webp" class="thumb" onclick="changeVideo(3)">
+  <img src="images/sita_image.webp" class="thumb" onclick="changeVideo(4)">
+
+</div>
+
+  </div>
+
+</section>
+
+
+<section class="trending">
+
+  <h2>Trending Now</h2>
+
+  <div class="trending-wrapper">
+    <div class="trending-slider" id="slider">
+
+      <!-- CARD -->
+      <div class="card">
+        <span class="rank">1</span>
+        <img src="images/trending1.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">2</span>
+        <img src="images/trending2.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">3</span>
+        <img src="images/trending3.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">4</span>
+        <img src="images/trending4.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">5</span>
+        <img src="images/trending5.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">6</span>
+        <img src="images/trending6.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">7</span>
+        <img src="images/trending7.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">8</span>
+        <img src="images/trending8.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">9</span>
+        <img src="images/trending9.webp">
+      </div>
+
+      <div class="card">
+        <span class="rank">10</span>
+        <img src="images/trending10.webp">
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="popular">
+
+  <h2>Popular TV Shows</h2>
+
+    <!-- ARROWS -->
+  <button class="slide-btn left" onclick="slideLeft()">&#10094;</button>
+  <button class="slide-btn right" onclick="slideRight()">&#10095;</button>
+
+  <div class="popular-row" id="sliders">
+
+    <!-- CARD -->
+    <div class="p-card">
+      <img src="images/show1.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2022 • Tamil</p>
+        <p class="desc">A gripping emotional journey of love and destiny.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show2.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2021 • Hindi</p>
+        <p class="desc">A romantic tale that blossoms through time.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show3.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2023 • English</p>
+        <p class="desc">A modern love story with unexpected twists.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show4.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2020 • Tamil</p>
+        <p class="desc">An intense drama about relationships and trust.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show5.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2019 • Telugu</p>
+        <p class="desc">A heart-touching story filled with emotions.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show6.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2024 • Malayalam</p>
+        <p class="desc">A fresh take on love and life struggles.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show7.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2022 • Kannada</p>
+        <p class="desc">A beautiful story of connections and memories.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show8.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2021 • Tamil</p>
+        <p class="desc">Love, laughter, and unforgettable moments.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show9.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2023 • Hindi</p>
+        <p class="desc">An emotional rollercoaster of relationships.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/show10.webp">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2020 • English</p>
+        <p class="desc">A timeless story that touches the soul.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="tamil-movies">
+
+  <h2>Tamil Movie Suggestions</h2>
+
+  <button class="slide-btn left" onclick="slideTamilLeft()">&#10094;</button>
+  <button class="slide-btn right" onclick="slideTamilRight()">&#10095;</button>
+
+  <div class="popular-row" id="tamilSliders">
+
+    <div class="p-card">
+      <img src="images/tamil 1.webp" alt="Movie 1">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2024 • Tamil</p>
+        <p class="desc">An action-packed thriller featuring an unforgettable cinematic journey.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/tamil 2.webp" alt="Movie 2">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2023 • Tamil</p>
+        <p class="desc">A deeply moving story celebrating bonds, relationships, and life.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/tamil 3.webp" alt="Movie 3">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2024 • Tamil</p>
+        <p class="desc">A gripping suspense drama keeping you on the edge of your seat.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/tamil 4 (1).webp" alt="Movie 4">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2022 • Tamil</p>
+        <p class="desc">An epic classic period tale overflowing with rich cinematic grandeur.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/tamil 5.webp" alt="Movie 5">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2023 • Tamil</p>
+        <p class="desc">A light-hearted romantic comedy filled with memorable songs.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/tamil 6.webp" alt="Movie 5">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2023 • Tamil</p>
+        <p class="desc">A light-hearted romantic comedy filled with memorable songs.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="web-series">
+
+  <h2>Web Series Suggestions</h2>
+
+  <button class="slide-btn left" onclick="slideSeriesLeft()">&#10094;</button>
+  <button class="slide-btn right" onclick="slideSeriesRight()">&#10095;</button>
+
+  <div class="popular-row" id="seriesSliders">
+
+    <div class="p-card">
+      <img src="images/series 1.webp" alt="Web Series 1">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">Season 1 • Hindi</p>
+        <p class="desc">A crime thriller tracking an intense underground cat-and-mouse game.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/series 2.webp" alt="Web Series 2">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">Season 3 • English</p>
+        <p class="desc">Mind-bending sci-fi secrets unraveling across decades and timelines.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/series 3.webp" alt="Web Series 3">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">Season 2 • Tamil</p>
+        <p class="desc">A gritty political drama exploring power dynamics and dark truths.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/series 4.webp" alt="Web Series 4">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">Season 1 • English</p>
+        <p class="desc">A high-stakes corporate boardroom battle filled with sharp betrayals.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/series 5.webp" alt="Web Series 5">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">Season 4 • Malayalam</p>
+        <p class="desc">A critically acclaimed mystery procedural uncovering deep local secrets.</p>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <img src="images/series 6.webp" alt="Web Series 5">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">Season 4 • Malayalam</p>
+        <p class="desc">A critically acclaimed mystery procedural uncovering deep local secrets.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="coming-soon">
+
+  <h2>Coming Soon (All Languages)</h2>
+
+  <div class="coming-soon-wrapper">
+    <div class="coming-soon-slider" id="comingSoonSlider">
+
+      <div class="cs-card">
+        <img src="images/all 1.webp" alt="Coming Soon 1">
+        <div class="release-tag">Releasing July 2026</div>
+      </div>
+
+      <div class="cs-card">
+        <img src="images/all 2.webp" alt="Coming Soon 2">
+        <div class="release-tag">Releasing August 2026</div>
+      </div>
+
+      <div class="cs-card">
+        <img src="images/all 3.webp" alt="Coming Soon 3">
+        <div class="release-tag">Releasing August 2026</div>
+      </div>
+
+      <div class="cs-card">
+        <img src="images/all 4.webp" alt="Coming Soon 4">
+        <div class="release-tag">Releasing Sept 2026</div>
+      </div>
+
+      <div class="cs-card">
+        <img src="images/all 5 (1).webp" alt="Coming Soon 5">
+        <div class="release-tag">Releasing Oct 2026</div>
+      </div>
+
+      <div class="cs-card">
+        <img src="images/all 6.webp" alt="Coming Soon 6">
+        <div class="release-tag">Releasing Dec 2026</div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="spotlight-hero">
+  
+  <!-- BACKGROUND IMAGE/POSTER WITH GRAPHIC GRADIENT OVERLAY -->
+  <div class="spotlight-bg">
+    <img src="images/spotlight_banner.webp" alt="Spotlight Feature">
+    <div class="spotlight-overlay"></div>
+  </div>
+
+  <div class="spotlight-container">
+    
+    <!-- LEFT SIDE: ULTRA-PREMIUM GLASSMORPHISM DETAIL PANEL -->
+    <div class="spotlight-glass-panel">
+      <span class="spotlight-badge"><i class="ri-sparkling-fill"></i> StreamX Special Showcase</span>
+      
+      <h2 class="spotlight-title">The Legend of Kalki</h2>
+      
+      <div class="spotlight-meta-row">
+        <span class="meta-tag rating">IMDb 8.9</span>
+        <span class="meta-tag year">2026</span>
+        <span class="meta-tag quality">4K Ultra HD</span>
+        <span class="meta-tag audio">5.1 Dolby Audio</span>
+      </div>
+
+      <p class="spotlight-synopsis">
+        When darkness consumes the modern world, a modern prophecy awakens. An epic fusion of futuristic sci-fi and legendary mythology unfolds as protectors fight against a corporate empire to guard the dawn of a new era.
+      </p>
+
+      <div class="spotlight-actions">
+        <button class="spotlight-btn primary-action" onclick="goTo404()">
+          <i class="ri-play-fill"></i> Watch Now
+        </button>
+        <button class="spotlight-btn secondary-action" onclick="goTo404()">
+          <i class="ri-add-line"></i> Add to My List
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: CINEMATIC HOVER FLOATING POSTER ART -->
+    <div class="spotlight-artwork-wrapper">
+      <div class="spotlight-artwork">
+        <img src="images/jawan.webp" alt="Poster Frame">
+        <div class="live-pulse">
+          <span class="pulse-dot"></span>Trending Movie #1
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="live-broadcast">
+
+  <div class="broadcast-header">
+    <div class="header-left">
+      <span class="live-indicator"><span class="ripple"></span> LIVE NOW</span>
+      <h2>Premium Global Sports & Events</h2>
+    </div>
+    <div class="header-right">
+      <a href="categories.html" class="explore-all-btn">View Event Schedule <i class="ri-arrow-right-line"></i></a>
+    </div>
+  </div>
+
+  <div class="broadcast-grid">
+
+    <!-- MAIN LARGE HIGHLIGHT EVENT -->
+    <div class="event-hero-card">
+      <img src="images/drama10.webp" alt="Main Event" class="event-bg">
+      <div class="event-scrim"></div>
+      
+      <div class="event-details">
+        <span class="event-category"><i class="ri-trophy-line"></i> Grand Prix Championship</span>
+        <h3>Formula 1: Marina Bay Speed Chase</h3>
+        <p class="event-status-text">Lap 42/61 • High-speed night racing streaming live in ultra-low latency.</p>
+        
+        <div class="event-actions">
+          <button class="action-stream-btn" onclick="goTo404()">▶ Tune In Live</button>
+          <span class="viewer-count"><i class="ri-user-voice-line"></i> 1.4M Watching</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDE GRID CONTAINER -->
+    <div class="event-side-column">
+
+      <!-- SIDE CARD 1 -->
+      <div class="event-mini-card">
+        <div class="mini-thumb">
+          <img src="images/drama8.webp" alt="Event 1">
+          <span class="mini-badge live">LIVE</span>
+        </div>
+        <div class="mini-info">
+          <h4>Premier League Showcase</h4>
+          <p>Manchester vs London City</p>
+          <span class="mini-meta">English Commentary • 4K</span>
+        </div>
+        <button class="mini-play-icon" onclick="goTo404()"><i class="ri-play-mini-fill"></i></button>
+      </div>
+
+      <!-- SIDE CARD 2 -->
+      <div class="event-mini-card">
+        <div class="mini-thumb">
+          <img src="images/trending3.webp" alt="Event 2">
+          <span class="mini-badge live">LIVE</span>
+        </div>
+        <div class="mini-info">
+          <h4>World Tennis Open</h4>
+          <p>Quarter-Finals: Men's Singles</p>
+          <span class="mini-meta">Court 1 Broadcast</span>
+        </div>
+        <button class="mini-play-icon" onclick="goTo404()"><i class="ri-play-mini-fill"></i></button>
+      </div>
+
+      <!-- SIDE CARD 3 -->
+      <div class="event-mini-card">
+        <div class="mini-thumb">
+          <img src="images/show10.webp" alt="Event 3">
+          <span class="mini-badge status">STARTS IN 20M</span>
+        </div>
+        <div class="mini-info">
+          <h4>Global Music Awards 2026</h4>
+          <p>Red Carpet Pre-Show Coverage</p>
+          <span class="mini-meta">Exclusive Live Stream</span>
+        </div>
+        <button class="mini-play-icon" onclick="goTo404()"><i class="ri-notification-3-line"></i></button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="global-movies">
+
+  <h2>Top 10 Global Movies</h2>
+
+  <!-- NAVIGATION CONTROLS -->
+  <button class="slide-btn left" onclick="slideGlobalLeft()">&#10094;</button>
+  <button class="slide-btn right" onclick="slideGlobalRight()">&#10095;</button>
+
+  <div class="popular-row" id="globalSliders">
+
+    <!-- MOVIE CARD 1 -->
+    <div class="p-card tilt-card">
+      <img src="images/global 1 (1).webp" alt="Global Movie 1">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2026 • English</p>
+        <p class="desc">A high-stakes espionage thrill ride spanning across global capitals.</p>
+      </div>
+    </div>
+
+    <!-- MOVIE CARD 2 -->
+    <div class="p-card tilt-card">
+      <img src="images/global 2.webp" alt="Global Movie 2">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2025 • Hindi</p>
+        <p class="desc">An emotional reality-bending journey of redemption and family ties.</p>
+      </div>
+    </div>
+
+    <!-- MOVIE CARD 3 -->
+    <div class="p-card tilt-card">
+      <img src="images/global 3.webp" alt="Global Movie 3">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2026 • Tamil</p>
+        <p class="desc">A fast-paced cyber-crime investigation tracking a digital ghost.</p>
+      </div>
+    </div>
+
+    <!-- MOVIE CARD 4 -->
+    <div class="p-card tilt-card">
+      <img src="images/global 4.webp" alt="Global Movie 4">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2024 • Japanese</p>
+        <p class="desc">A visually spectacular animation dealing with spirits and memory loops.</p>
+      </div>
+    </div>
+
+    <!-- MOVIE CARD 5 -->
+    <div class="p-card tilt-card">
+      <img src="images/global 5.webp" alt="Global Movie 5">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2025 • English</p>
+        <p class="desc">Deep-space explorers navigate an uncharted solar system anomaly.</p>
+      </div>
+    </div>
+
+    <div class="p-card tilt-card">
+      <img src="images/global 6.webp" alt="Global Movie 5">
+      <div class="p-overlay">
+        <button onclick="goTo404()">▶ Watch Now</button>
+        <p class="meta">2026 • English</p>
+        <p class="desc">Deep-space explorers navigate an uncharted solar system anomaly.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+<!-- MODERN FAQ SECTION -->
+<section class="faq">
+
+  <div class="faq-header">
+    <h2>Frequently Asked Questions</h2>
+    <p class="faq-subtitle">Everything you need to know about your streaming experience on StreamX.</p>
+  </div>
+
+  <div class="faq-container">
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What is StreamX?</span>
+        <div class="icon-box">
+          <i class="ri-add-line"></i>
+        </div>
+      </div>
+      <div class="faq-answer">
+        <p>StreamX is an online OTT platform where you can watch movies, TV shows, and exclusive originals anytime, anywhere.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How much does StreamX cost?</span>
+        <div class="icon-box">
+          <i class="ri-add-line"></i>
+        </div>
+      </div>
+      <div class="faq-answer">
+        <p>StreamX offers flexible subscription plans like Basic, Standard, and Premium with different features and pricing tiers tailored to your setup.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>Where can I watch StreamX?</span>
+        <div class="icon-box">
+          <i class="ri-add-line"></i>
+        </div>
+      </div>
+      <div class="faq-answer">
+        <p>You can watch StreamX on smartphones, tablets, smart TVs, laptops, and desktops with an active internet connection.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>How do I cancel my subscription?</span>
+        <div class="icon-box">
+          <i class="ri-add-line"></i>
+        </div>
+      </div>
+      <div class="faq-answer">
+        <p>You can cancel your subscription anytime from your account settings without any extra termination charges or hidden processing fees.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>What content is available on StreamX?</span>
+        <div class="icon-box">
+          <i class="ri-add-line"></i>
+        </div>
+      </div>
+      <div class="faq-answer">
+        <p>StreamX offers a wide range of content including movies, TV shows, web series, documentaries, and exclusive custom originals.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- MODERN GRADIENT CTA SECTION -->
+<section class="cta-section">
+  <div class="cta-gradient-backdrop"></div>
+  
+  <div class="cta-content">
+    <span class="cta-badge">Limited Time Offer</span>
+    <h3 class="cta-title">Ready to dive into the action?</h3>
+    <p class="cta-text">
+      Enter your email address to instantly create or restart your membership today.
+    </p>
+
+    <div class="cta-box">
+      <div class="input-wrapper">
+        <i class="ri-mail-line input-icon"></i>
+        <input type="email" id="emailInput" placeholder="Email address" required>
+      </div>
+      <button class="cta-submit-btn" onclick="redirectTo404()">
+        Get Started <i class="ri-arrow-right-s-line"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- FOOTER SECTION -->
+<footer class="bio-footer">
+
+  <div class="footer-container">
+
+    <!-- ABOUT OTT -->
+    <div class="footer-col">
+      <div class="footer-logo">
+        <img src="./images/stackly_logo.webp" alt="OTT Platform Logo">
+      </div>
+
+      <p>
+        Our OTT streaming platform delivers unlimited movies, TV shows,
+        and exclusive originals across multiple genres. Enjoy high-quality
+        entertainment anytime, anywhere with seamless streaming,
+        personalized recommendations, and a cinematic experience
+        at your fingertips.
+      </p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="service.html">Service</a></li>
+        <!-- <li><a href="movies.html">Movies</a></li> -->
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- SOCIAL MEDIA -->
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <ul class="social-links">
+        <li>
+          <a href="404.html"><i class="ri-facebook-fill"></i> Facebook</a>
+        </li>
+        <li>
+          <a href="404.html"><i class="ri-twitter-x-line"></i> Twitter</a>
+        </li>
+        <li>
+          <a href="404.html"><i class="ri-instagram-line"></i> Instagram</a>
+        </li>
+        <li>
+          <a href="404.html"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+        </li>
+        <li>
+          <a href="404.html"><i class="ri-youtube-fill"></i> YouTube</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="404.html">Action</a></li>
+        <li><a href="404.html">Drama</a></li>
+        <li><a href="404.html">Sci-Fi</a></li>
+        <li><a href="404.html">Thriller</a></li>
+        <li><a href="404.html">Comedy</a></li>
+      </ul>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="404.html">Help Center</a></li>
+        <li><a href="404.html">Account Settings</a></li>
+        <li><a href="404.html">Subscription Plans</a></li>
+        <li><a href="404.html">Privacy Policy</a></li>
+        <li><a href="404.html">Terms & Conditions</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom">
+    <p>© 2026 StreamX OTT Platform | All Rights Reserved</p>
+  </div>
+
+</footer>
+<script>
+function goTo404() {
+  window.location.href = "404.html";
+}
+
+function redirectTo404() {
+  const email = document.getElementById("emailInput").value.trim();
+
+  if (email === "") {
+    alert("Please enter your email address");
+    return;
+  }
+
+  const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
+
+  if (!pattern.test(email)) {
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  // redirect
+  window.location.href = "404.html";
+}
+</script>
+<script src="./js/script.js"></script>
+</body>
+</html>
